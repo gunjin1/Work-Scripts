@@ -12,6 +12,8 @@ $outFile = $reports + $comp + "_WinDefLogs.txt"
 $mplog = (Get-ChildItem "\\$comp\c$\ProgramData\Microsoft\Windows Defender\Support" | Where-Object {$_.Name -Like "MPLOG*"}).Name
 
 # Output log file for review
+# To Do: Test this in rare cases where there 
+# is more than one MPLOG.log file
 ForEach ($log in $mplog) {
     Get-Content "\\$comp\c$\ProgramData\Microsoft\Windows Defender\Support\$log" | Out-File $outFile
     }
